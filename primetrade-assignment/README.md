@@ -20,14 +20,6 @@ This entire application (MongoDB, Node.js Backend, and React Frontend) is fully 
   * `5000` (Backend REST API)
   * `27017` (MongoDB Instance)
 
-### Access the Application:
-
-* Frontend UI: Open your browser and go to  http://localhost:5173
-
-* Backend API: Live and accessible at http://localhost:5000
-
-* MongoDB: Running locally on mongodb://localhost:27017
-
 ### Running the Application
 
 1. Open your terminal and navigate to the root project directory containing the `docker-compose.yml` file.
