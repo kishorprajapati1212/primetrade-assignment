@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongo-db:
+    image: mongo:latest
+    container_name: primetrade-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: primetrade-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo-db:27017/primetrade
+      - JWT_SECRET=primetrade
+    depends_on:
+      - mongo-db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: primetrade-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      # This tells the Vite frontend where to find the backend API
+      - VITE_API_URL=http://localhost:5000/api/v1
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  mongo-data:

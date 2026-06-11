@@ -1,0 +1,87 @@
+{
+    "info": {
+      "_postman_id": "primetrade-api-assignment",
+      "name": "Primetrade.ai Intern Assignment API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "item": [
+          {
+            "name": "Register User",
+            "request": {
+              "method": "POST",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"securepassword123\",\n  \"role\": \"USER\"\n}"
+              },
+              "url": { "raw": "http://localhost:5000/api/v1/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "register"] }
+            }
+          },
+          {
+            "name": "Login User",
+            "request": {
+              "method": "POST",
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"securepassword123\"\n}"
+              },
+              "url": { "raw": "http://localhost:5000/api/v1/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "login"] }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Tasks (Secondary Entity)",
+        "item": [
+          {
+            "name": "Get User Tasks",
+            "request": {
+              "method": "GET",
+              "header": [
+                { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+              ],
+              "url": { "raw": "http://localhost:5000/api/v1/tasks", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "tasks"] }
+            }
+          },
+          {
+            "name": "Create Task",
+            "request": {
+              "method": "POST",
+              "header": [
+                { "key": "Authorization", "value": "Bearer {{jwt_token}}" },
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Complete Code Assignment\",\n  \"description\": \"Finish the backend implementation for the submission.\"\n}"
+              },
+              "url": { "raw": "http://localhost:5000/api/v1/tasks", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "tasks"] }
+            }
+          },
+          {
+            "name": "Update Task Status",
+            "request": {
+              "method": "PUT",
+              "header": [
+                { "key": "Authorization", "value": "Bearer {{jwt_token}}" },
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"status\": \"in-progress\"\n}"
+              },
+              "url": { "raw": "http://localhost:5000/api/v1/tasks/:id", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "tasks", ":id"], "variable": [{ "key": "id", "value": "replace_with_task_id" }] }
+            }
+          }
+        ]
+      }
+    ]
+  }
